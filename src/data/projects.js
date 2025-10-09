@@ -1,3 +1,6 @@
+// src/data/projects.js
+// NOTE: Images are in /public, so we reference them with absolute paths (no imports).
+
 export const projects = [
   {
     slug: "motivation-app",
@@ -7,7 +10,14 @@ export const projects = [
     tech: ["Java", "XML", "Android Studio", "Room DB", "MVVM"],
     repo: "#",
     demo: "#",
-    // Optional image paths later: cover: "/images/motivation-cover.png"
+
+    // 👇 3-image hero (left, main/center, right) — uses your public/motivation files
+    heroShots: [
+      "/motivation/rewards.png", // left  (your file is spelled 'calender')
+      "/motivation/points.png", // main (center, biggest)
+      "/motivation/calender.png", // right
+    ],
+
     sections: [
       {
         heading: "Overview",
@@ -31,6 +41,7 @@ export const projects = [
       },
     ],
   },
+
   {
     slug: "secure-mood-tracker",
     title: "Secure Mood Tracker (Mind App)",
@@ -39,6 +50,10 @@ export const projects = [
     tech: ["JavaScript", "CryptoJS", "HTML/CSS", "PWA", "Service Workers"],
     repo: "#",
     demo: "#",
+
+    // (Optional) add a hero later if you want:
+    // heroShots: ["/mindapp/home.png", "/mindapp/phone.png", "/mindapp/share.png"],
+
     sections: [
       {
         heading: "Overview",
