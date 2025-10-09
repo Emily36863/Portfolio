@@ -1,9 +1,10 @@
+// src/pages/Home.jsx
 import { Link } from "react-router-dom";
 import { projects } from "../data/projects";
 
 export default function Home() {
   return (
-    <>
+    <main className="content">
       <header className="header">
         <h1>Emily Thomson Kearney</h1>
         <p>
@@ -12,79 +13,83 @@ export default function Home() {
         </p>
       </header>
 
-      <section className="section about">
-        <h2>About Me</h2>
-        <p>
-          I'm passionate about building intuitive, inclusive digital
-          experiences. I enjoy combining design with technical thinking and love
-          working on meaningful projects that make everyday life easier.
-        </p>
-      </section>
+      <div className="home-grid">
+        {/* LEFT: About (sticky) + Skills under it */}
+        <div className="left-col about-panel">
+          <section className="section about">
+            <h2>About Me</h2>
+            <p>
+              I'm passionate about building intuitive, inclusive digital
+              experiences. I enjoy combining design with technical thinking and
+              love working on meaningful projects that make everyday life
+              easier.
+            </p>
+          </section>
 
-      <section className="section projects">
-        <h2>Projects</h2>
-        <div className="projects-grid">
-          {projects.map((p) => (
-            <article key={p.slug} className="project-card">
-              {/* clickable title for accessibility */}
-              <h3 className="project-title">
-                <Link to={`/projects/${p.slug}`}>{p.title}</Link>
-              </h3>
+          <section className="section skills">
+            <h2>Skills</h2>
+            <ul className="skills-list">
+              <li>React</li>
+              <li>JavaScript</li>
+              <li>Python</li>
+              <li>HTML &amp; CSS</li>
+              <li>CryptoJS</li>
+              <li>Figma</li>
+            </ul>
+          </section>
+        </div>
 
-              <p>{p.summary}</p>
-              <p>
-                <strong>Tech:</strong> {p.tech.join(", ")}
-              </p>
+        {/* RIGHT: Projects */}
+        <section className="section projects">
+          <h2>Projects</h2>
+          <div className="projects-grid">
+            {projects.map((p) => (
+              <article key={p.slug} className="project-card">
+                <h3 className="project-title">
+                  <Link to={`/projects/${p.slug}`}>{p.title}</Link>
+                </h3>
+                <p>{p.summary}</p>
+                <div className="meta-row" style={{ marginTop: 8 }}>
+                  {p.tech.slice(0, 4).map((t) => (
+                    <span key={t} className="badge-soft">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <div style={{ marginTop: 10 }}>
+                  <Link to={`/projects/${p.slug}`}>Read case study →</Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
 
-              {/* invisible-but-full-card click target */}
-              <Link
-                to={`/projects/${p.slug}`}
-                className="stretched-link"
-                aria-label={`Open case study for ${p.title}`}
-              />
-            </article>
-          ))}
+      {/* Contact */}
+      <section className="section contact" id="contact">
+        <h2>Contact</h2>
+        <div className="contact-row">
+          <p>
+            Email:{" "}
+            <a href="mailto:emilytk368@gmail.com">emilytk368@gmail.com</a>
+          </p>
+          <p>
+            LinkedIn:{" "}
+            <a
+              href="https://www.linkedin.com/in/emilytk"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View my LinkedIn
+            </a>
+          </p>
+          <p>
+            <a href="/Emily-Thomson-Kearney-CV.pdf" download>
+              Download my CV
+            </a>
+          </p>
         </div>
       </section>
-
-      <section className="section skills">
-        <h2>Skills</h2>
-        <ul className="skills-list">
-          <li>React</li>
-          <li>JavaScript</li>
-          <li>Python</li>
-          <li>HTML & CSS</li>
-          <li>CryptoJS</li>
-          <li>Figma</li>
-        </ul>
-      </section>
-
-      <section className="section contact">
-        <h2>Contact</h2>
-        <p>
-          Email: <a href="mailto:emilytk368@gmail.com">emilytk368@gmail.com</a>
-        </p>
-        <p>
-          GitHub:{" "}
-          <a
-            href="https://github.com/YOUR_GITHUB_USERNAME"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View my GitHub
-          </a>
-        </p>
-        <p>
-          LinkedIn:{" "}
-          <a
-            href="https://linkedin.com/in/YOUR_LINKEDIN"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View my LinkedIn
-          </a>
-        </p>
-      </section>
-    </>
+    </main>
   );
 }

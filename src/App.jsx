@@ -26,7 +26,6 @@ export default function App() {
       <footer className="footer">
         <span>© {new Date().getFullYear()} Emily Thomson Kearney</span>
         <span className="dot">•</span>
-        <a href="mailto:emily36863@gmail.com">Contact</a>
       </footer>
     </div>
   );

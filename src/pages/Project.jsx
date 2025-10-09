@@ -1,10 +1,13 @@
-// pages/Project.jsx
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { projects } from "../data/projects";
 
+function cleanText(s = "") {
+  return s.replace(/\*\*/g, "");
+} // remove stray **
+
 function Body({ text }) {
-  const lines = text.split("\n").filter(Boolean);
+  const lines = cleanText(text).split("\n").filter(Boolean);
   const bulletLines = lines.filter((l) => l.trim().startsWith("•"));
   if (bulletLines.length >= 2) {
     return (
@@ -25,141 +28,148 @@ export default function Project() {
 
   if (!project) {
     return (
-      <div className="section">
+      <section className="section">
         <h2>Project not found</h2>
         <p>
           <Link to="/">Back to home</Link>
         </p>
-      </div>
+      </section>
     );
   }
 
-  const hasAside =
-    (project.tech?.length || 0) > 0 || project.repo || project.demo;
+  const heroImg = project.cover || project.gallery?.[0] || null;
 
   return (
-    <article className="section" aria-labelledby="case-title">
-      <nav style={{ marginBottom: 12 }}>
+    <main className="content">
+      {/* Back button */}
+      <nav className="section" style={{ marginBottom: 16, padding: 12 }}>
         <Link to="..">← Back to projects</Link>
       </nav>
 
-      {/* HERO */}
-      <header className="project-hero">
+      {/* HERO: centered title + summary; optional hero image below */}
+      <section className="section project-hero">
         <div className="project-hero-inner">
-          {project.cover && (
-            <div className="hero-media">
-              <img
-                src={project.cover}
-                alt={`${project.title} cover`}
-                loading="eager"
-              />
-            </div>
-          )}
-          <div>
-            <h1 id="case-title" style={{ margin: 0 }}>
-              {project.title}
-            </h1>
-            <p style={{ color: "#4b5563", margin: "8px 0 0" }}>
-              {project.summary}
-            </p>
-            <div className="meta-row">
-              {project.tech?.slice(0, 5).map((t) => (
-                <span className="badge-soft" key={t}>
-                  {t}
-                </span>
-              ))}
-            </div>
+          <div className="prose-max">
+            <h1 style={{ margin: 0 }}>{project.title}</h1>
+            {project.summary && (
+              <p
+                style={{
+                  color: "#4b5563",
+                  margin: "8px auto 0",
+                  maxWidth: 820,
+                }}
+              >
+                {project.summary}
+              </p>
+            )}
           </div>
-        </div>
-      </header>
 
-      {/* BODY */}
-      <div className={`project-body ${hasAside ? "has-aside" : ""}`}>
-        <div className="case-prose">
-          {/* Optional image gallery */}
-          {project.gallery?.length > 0 && (
-            <section className="gallery">
-              <h3>UI Gallery</h3>
-              <div className="gallery-grid" role="list">
-                {project.gallery.map((src, i) => (
-                  <button
-                    key={src}
-                    className="gallery-item"
-                    onClick={() => setLightboxSrc(src)}
-                    aria-label={`Open image ${i + 1} in lightbox`}
-                    style={{
-                      border: "none",
-                      padding: 0,
-                      background: "transparent",
-                    }}
+          {heroImg && (
+            <div className="hero-media">
+              <img src={heroImg} alt="" loading="eager" />
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* BODY: card same width as title, text constrained */}
+      <article className="section" aria-labelledby="case-title">
+        <div className="prose-max case-prose">
+          {/* Overview */}
+          {project.sections?.find((s) => s.heading === "Overview") && (
+            <>
+              <h2>Overview</h2>
+              <Body
+                text={
+                  project.sections.find((s) => s.heading === "Overview").body
+                }
+              />
+            </>
+          )}
+
+          {/* Key Features (optional) */}
+          {Array.isArray(project.featuresMedia) &&
+            project.featuresMedia.length > 0 && (
+              <>
+                <h2 style={{ marginTop: 20 }}>Key Features</h2>
+                {project.featuresMedia.map((f, idx) => (
+                  <div
+                    key={f.title || idx}
+                    className={`feature-row ${idx % 2 ? "reverse" : ""}`}
                   >
-                    <img
-                      src={src}
-                      alt={`${project.title} screenshot ${i + 1}`}
-                      loading="lazy"
-                    />
-                  </button>
+                    <div
+                      className="feature-media"
+                      onClick={() => f.img && setLightboxSrc(f.img)}
+                      style={{ cursor: f.img ? "zoom-in" : "default" }}
+                    >
+                      {f.img ? <img src={f.img} alt="" loading="lazy" /> : null}
+                    </div>
+                    <div>
+                      {f.title ? <h3>{cleanText(f.title)}</h3> : null}
+                      {f.text ? <Body text={f.text} /> : null}
+                    </div>
+                  </div>
                 ))}
-              </div>
+              </>
+            )}
+
+          {/* Tech Used */}
+          {project.sections?.find(
+            (s) => s.heading === "Tech Stack" || s.heading === "Tech Used"
+          ) && (
+            <>
+              <h2>Tech Used</h2>
+              <Body
+                text={
+                  (
+                    project.sections.find((s) => s.heading === "Tech Used") ||
+                    project.sections.find((s) => s.heading === "Tech Stack")
+                  ).body
+                }
+              />
+            </>
+          )}
+
+          {/* Challenges (accordion) */}
+          {project.sections?.find((s) => s.heading.includes("Challenges")) && (
+            <section style={{ marginTop: 18 }}>
+              <details>
+                <summary>
+                  <h3 style={{ display: "inline" }}>Challenges Solved</h3>
+                  <span className="badge">Tap to expand</span>
+                </summary>
+                <Body
+                  text={
+                    project.sections.find((s) =>
+                      s.heading.includes("Challenges")
+                    ).body
+                  }
+                />
+              </details>
             </section>
           )}
 
-          {project.sections?.map((s) => (
-            <section key={s.heading} style={{ marginBottom: 20 }}>
-              {["Design Challenges & Solutions", "Reflection"].includes(
-                s.heading
-              ) ? (
-                <details>
-                  <summary>
-                    <h3 style={{ display: "inline" }}>{s.heading}</h3>
-                    <span className="badge">Tap to expand</span>
-                  </summary>
-                  <Body text={s.body} />
-                </details>
-              ) : (
-                <>
-                  <h3 style={{ margin: "16px 0 8px" }}>{s.heading}</h3>
-                  <Body text={s.body} />
-                </>
-              )}
+          {/* Reflection (accordion) */}
+          {project.sections?.find((s) => s.heading === "Reflection") && (
+            <section style={{ marginTop: 8 }}>
+              <details>
+                <summary>
+                  <h3 style={{ display: "inline" }}>Reflection</h3>
+                  <span className="badge">Tap to expand</span>
+                </summary>
+                <Body
+                  text={
+                    project.sections.find((s) => s.heading === "Reflection")
+                      .body
+                  }
+                />
+              </details>
             </section>
-          ))}
+          )}
         </div>
+      </article>
 
-        {hasAside && (
-          <aside className="aside-card" aria-label="Project meta">
-            <h3>Tech</h3>
-            <ul className="skills-list" style={{ marginBottom: 12 }}>
-              {project.tech?.map((t) => (
-                <li key={t}>{t}</li>
-              ))}
-            </ul>
-
-            <div className="project-links">
-              {project.repo && (
-                <a
-                  href={project.repo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  GitHub
-                </a>
-              )}
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Live Demo
-                </a>
-              )}
-            </div>
-          </aside>
-        )}
-      </div>
-
-      {/* Lightbox */}
+      {/* LIGHTBOX */}
       {lightboxSrc && (
         <div
           className="lightbox"
@@ -181,6 +191,6 @@ export default function Project() {
           </button>
         </div>
       )}
-    </article>
+    </main>
   );
 }
