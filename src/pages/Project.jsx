@@ -157,7 +157,6 @@ export default function Project() {
             <details>
               <summary>
                 <h3 style={{ display: "inline" }}>Challenges Solved</h3>
-                <span className="badge">Tap to expand</span>
               </summary>
               <Body
                 text={
@@ -178,7 +177,6 @@ export default function Project() {
             <details>
               <summary>
                 <h3 style={{ display: "inline" }}>Reflection</h3>
-                <span className="badge">Tap to expand</span>
               </summary>
               <Body
                 text={

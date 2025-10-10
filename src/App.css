@@ -269,6 +269,20 @@ a:hover {
   border-radius: 999px;
   border: 1px solid #c7d2fe;
 }
+/* Make the title line up perfectly with the chevron */
+.case-prose summary h3,
+.summary-title {
+  margin: 0; /* kills the default top/bottom margin that causes the misalignment */
+  line-height: 1.1; /* keeps the vertical center aligned with the arrow */
+  font-weight: 700;
+}
+
+/* If you keep any badges later, hide them on desktop pointers */
+@media (hover: hover) and (pointer: fine) {
+  .case-prose summary .badge {
+    display: none;
+  }
+}
 
 /* ===== Project Hero (edge-to-edge background + inner max width) ===== */
 .project-hero {
