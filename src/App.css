@@ -730,3 +730,154 @@ button:focus-visible,
   color: var(--brand);
   transform: translateX(-6px);
 }
+
+/* ===================================================================== */
+/* ======================  MOBILE-SIMPLE PATCHES  ======================= */
+/* ===================================================================== */
+
+/* ===== Utility: hide things on mobile manually ===== */
+@media (max-width: 900px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* ===== Turn off hover effects on touch devices ===== */
+@media (hover: none) {
+  a:hover {
+    text-decoration: none;
+  }
+  .btn:hover,
+  .project-card:hover,
+  .gallery-item:hover,
+  .hero-fan .phone:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* ===== Reduce motion / heavy effects on small screens ===== */
+@media (max-width: 900px) {
+  .hero-fan .phone,
+  .project-card,
+  .gallery-item,
+  .btn {
+    animation: none !important;
+    transition: none !important;
+    filter: none !important;
+  }
+
+  .project-hero-inner {
+    transform: none !important;
+  }
+  .hero {
+    min-height: auto !important;
+  }
+  .hero-fan .phone {
+    transform: none !important;
+  }
+}
+
+/* ===== Mobile: show only the center phone, keep the page ===== */
+@media (max-width: 899px) {
+  /* Keep hero layout simple and prevent overflow */
+  .project-hero-inner {
+    transform: none !important;
+  }
+  .hero {
+    min-height: auto !important;
+  }
+
+  /* Make the fan a single centered image */
+  .hero-fan {
+    position: relative;
+    min-height: 0;
+    display: block;
+    padding: 8px 0;
+    overflow: visible;
+  }
+  .hero-fan .phone {
+    position: relative !important; /* release from absolute */
+    display: block;
+    width: min(88vw, 420px);
+    height: auto;
+    margin: 0 auto; /* center it */
+    transform: none !important;
+    animation: none !important;
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+  }
+  .hero-fan .phone--left,
+  .hero-fan .phone--right {
+    display: none !important; /* hide side shots on phones */
+  }
+
+  /* Hover effects don’t matter on touch */
+  .hero-fan .phone:hover {
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  /* ===== HERO CENTERING & TYPOGRAPHY ===== */
+  .project-hero-inner.hero__grid {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .hero__copy {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero__title {
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero__sub {
+    font-size: clamp(1rem, 4.5vw, 1.1rem);
+    max-width: 40ch;
+    margin: 0 auto;
+  }
+
+  /* ===== SECTION TEXT CENTERING ===== */
+  .section .case-prose,
+  .section p,
+  .section ul,
+  .section li {
+    text-align: center;
+  }
+
+  /* Keep section titles left-aligned */
+  .section h2,
+  .section h3 {
+    text-align: left;
+  }
+
+  /* Slightly tighter padding for mobile */
+  .section {
+    padding: 18px 14px;
+  }
+
+  /* Make bullet lists look neat when centered */
+  .section ul {
+    list-style-position: inside;
+    padding-left: 0;
+    margin: 0.6rem 0;
+  }
+}
+
+/* Optional: kill fancy hover lifts everywhere on touch devices */
+@media (hover: none) {
+  .btn:hover,
+  .project-card:hover,
+  .gallery-item:hover,
+  .hero-fan .phone:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
