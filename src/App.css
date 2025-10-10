@@ -300,6 +300,8 @@ a:hover {
   display: grid;
   gap: clamp(16px, 3vw, 28px);
   align-items: center;
+  transform: scale(1.04);
+  transform-origin: center;
 }
 
 @media (min-width: 1000px) {
@@ -587,122 +589,128 @@ button:focus-visible,
   transform: translateY(0);
 }
 
-/* ===== Sticky mini-hero ===== */
-.mini-hero {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateY(-12px) scale(0.98);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+/* ===== Float animation (gentle bounce) ===== */
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--tilt, 0deg));
+  }
+  50% {
+    transform: translateY(-6px) rotate(var(--tilt, 0deg));
+  }
 }
-.mini-hero--show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-.mini-hero__inner {
-  pointer-events: auto;
-  margin: 6px auto;
-  max-width: 1100px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  border: 1px solid #e5e7eb;
-  padding: 8px 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-}
-.mini-hero__img {
-  width: 34px;
-  height: 34px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid #eceff3;
-}
-.mini-hero__title {
-  font-weight: 700;
-  font-size: 14px;
-  color: #111827;
+@media (prefers-reduced-motion: reduce) {
+  .hero-fan .phone {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
-/* ===== 3-shot Fan (locked layout + subtle hover) ===== */
+/* ===== 3-shot Fan (interactive + float + responsive) ===== */
 .hero-fan {
   position: relative;
   min-height: clamp(340px, 48vh, 560px);
   display: grid;
   place-items: center;
 }
+
+/* Base phone frame */
 .hero-fan .phone {
-  position: absolute; /* lock positions */
-  width: 220px;
+  position: absolute; /* lock positions on desktop */
+  width: 240px;
   border-radius: 16px;
   border: 1px solid #eceff3;
   background: #fff;
   box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
   transform-origin: center;
   transition: transform 220ms ease, box-shadow 220ms ease, filter 220ms ease,
-    opacity 220ms ease;
+    opacity 220ms ease, z-index 0s;
   will-change: transform;
+
+  /* Gentle, staggered float */
+  animation: floatY 4.2s ease-in-out infinite;
 }
-/* Base angles/positions */
+
+/* Individual tilts + delays keep the wave offset */
+.hero-fan .phone--left {
+  --tilt: -8deg;
+  animation-delay: 0s;
+  left: 0%;
+  width: 280px;
+  transform: translateX(0) rotate(-8deg);
+}
 .hero-fan .phone--center {
-  width: 260px;
+  --tilt: 0deg;
+  animation-delay: 0.6s;
   z-index: 2;
+  width: 310px;
   transform: translateX(0) rotate(0deg);
 }
-.hero-fan .phone--left {
-  left: 6%;
-  transform: translateX(0) rotate(-8deg);
-  opacity: 1;
-}
 .hero-fan .phone--right {
-  right: 6%;
+  --tilt: 8deg;
+  animation-delay: 1.2s;
+  right: 0%;
+  width: 280px;
   transform: translateX(0) rotate(8deg);
-  opacity: 1;
 }
 
-/* Keep formation; no global dimming on hover */
-/* (intentionally no .hero-fan:hover .phone { opacity: ... }) */
-
-/* Individual hover: lift + scale, keep angle */
-.hero-fan .phone--left:hover {
-  transform: rotate(-8deg) translateY(-6px) scale(1.06);
+/* Hover/focus: pause float, lift, keep angle, pop above */
+.hero-fan .phone:hover,
+.hero-fan .phone:focus-visible {
+  animation-play-state: paused;
+  transform: translateY(-6px) scale(1.06) rotate(var(--tilt, 0));
   z-index: 3;
   opacity: 1;
   box-shadow: 0 18px 44px rgba(17, 24, 39, 0.18);
-}
-.hero-fan .phone--center:hover {
-  transform: rotate(0deg) translateY(-6px) scale(1.06);
-  z-index: 3;
-  opacity: 1;
-  box-shadow: 0 18px 44px rgba(17, 24, 39, 0.18);
-}
-.hero-fan .phone--right:hover {
-  transform: rotate(8deg) translateY(-6px) scale(1.06);
-  z-index: 3;
-  opacity: 1;
-  box-shadow: 0 18px 44px rgba(17, 24, 39, 0.18);
+  outline: 0; /* you already style focus elsewhere */
 }
 
-/* Mobile: simple row, no angles */
+/* ===== Mobile: convert to a snap-scrolling carousel ===== */
 @media (max-width: 899px) {
   .hero-fan {
     min-height: 0;
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
+
+  /* Hide scrollbar (non-breaking) */
+  .hero-fan::-webkit-scrollbar {
+    height: 0;
+  }
+  .hero-fan {
+    scrollbar-width: none;
+  }
+  .hero-fan::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
   .hero-fan .phone {
-    position: static;
-    transform: none;
-    width: 32vw;
-    max-width: 180px;
+    position: relative; /* release from absolute */
+    flex: 0 0 72vw; /* big, readable phone size */
+    max-width: 420px;
+    width: auto;
+    height: auto;
+    transform: none; /* no tilt on mobile – clearer */
+    animation: floatY 4.2s ease-in-out infinite;
+    scroll-snap-align: center;
   }
+
+  /* Center one slightly larger by default */
   .hero-fan .phone--center {
-    width: 36vw;
-    max-width: 210px;
+    flex-basis: 78vw;
+  }
+
+  /* Hover doesn't exist on touch; keep focus/active behavior for a11y */
+  .hero-fan .phone:active,
+  .hero-fan .phone:focus-visible {
+    animation-play-state: paused;
+    transform: translateY(-4px) scale(1.03);
+    z-index: 2;
   }
 }
 

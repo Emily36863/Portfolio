@@ -9,8 +9,21 @@ export default function SectionReveal({
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
+  // track scroll direction
+  const scrollDir = useRef("down");
   useEffect(() => {
-    // Respect "reduced motion" accessibility setting
+    let lastY = typeof window !== "undefined" ? window.scrollY : 0;
+    const onScroll = () => {
+      const y = window.scrollY;
+      scrollDir.current = y > lastY ? "down" : "up";
+      lastY = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    // Respect reduced motion: keep everything visible
     const mm =
       typeof window !== "undefined" && window.matchMedia
         ? window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -27,11 +40,19 @@ export default function SectionReveal({
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          // fade in when the section enters the viewport
           setVisible(true);
-          io.unobserve(el); // reveal once
+        } else {
+          // fade out ONLY when the user is scrolling up
+          if (scrollDir.current === "up") {
+            setVisible(false);
+          }
         }
       },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.15 }
+      {
+        rootMargin: "0px 0px -10% 0px",
+        threshold: 0.15,
+      }
     );
 
     io.observe(el);

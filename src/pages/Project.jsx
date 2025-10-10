@@ -3,7 +3,6 @@ import { useParams, Link } from "react-router-dom";
 import { projects } from "../data/projects";
 import SectionReveal from "../components/SectionReveal";
 import ScreenshotFan from "../components/ScreenshotFan";
-import StickyMiniHero from "../components/StickyMiniHero";
 
 function cleanText(s = "") {
   return s.replace(/\*\*/g, "");
@@ -83,14 +82,6 @@ export default function Project() {
           ) : null}
         </div>
       </section>
-
-      {/* Sticky mini hero */}
-      <StickyMiniHero
-        title={project.title}
-        image={
-          Array.isArray(project.heroShots) ? project.heroShots[1] : heroImg
-        }
-      />
 
       {/* OVERVIEW */}
       {project.sections?.some((s) => s.heading === "Overview") && (
