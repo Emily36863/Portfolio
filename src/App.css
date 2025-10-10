@@ -123,6 +123,12 @@ a:hover {
 .section + .section {
   margin-top: 1.25rem;
 }
+
+.section:not(.project-hero) {
+  max-width: clamp(940px, 94vw, 1280px);
+  margin-inline: auto;
+}
+
 .section h2 {
   position: relative;
   margin: 0 0 0.6rem;
