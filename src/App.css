@@ -378,7 +378,7 @@ a:hover {
 .feature-row {
   display: grid;
   gap: 20px; /* mobile spacing */
-  align-items: start;
+  align-items: center;
   margin: 32px 0;
 }
 
@@ -429,13 +429,13 @@ a:hover {
   .feature-row:not(.reverse) .feature-copy {
     justify-self: start; /* left edge sits on the center (start of right col) */
     text-align: left;
-    max-width: 46ch;
+    max-width: 60qb;
     margin: 0;
   }
   .feature-row.reverse .feature-copy {
     justify-self: end; /* right edge sits on the center (end of left col) */
     text-align: right;
-    max-width: 46ch;
+    max-width: 60ch;
     margin: 0;
   }
 
