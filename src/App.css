@@ -368,7 +368,6 @@ a:hover {
   background: var(--brand-light);
   color: var(--brand-dark);
 }
-
 /* ===== Alternating Feature Rows — center locked to page middle ===== */
 
 :root {
@@ -389,23 +388,24 @@ a:hover {
   border: 1px solid #e5e7eb;
   box-shadow: 0 6px 18px rgba(17, 24, 39, 0.06);
 }
+
 .feature-media img {
   width: 100%;
   height: auto;
   display: block;
 }
 
-/* Mobile: stack and center */
+/* Mobile: stack and center text */
 .feature-row .feature-copy {
   text-align: center;
   max-width: 90%;
   margin: 0 auto;
 }
 
-/* ---------- Desktop: two equal halves, true center is the split ---------- */
+/* ---------- Desktop layout ---------- */
 @media (min-width: 900px) {
   .feature-row {
-    grid-template-columns: 1fr 1fr; /* equal columns => real center */
+    grid-template-columns: 1fr 1fr; /* equal halves => true center is the split */
     column-gap: var(--feature-gap);
   }
 
@@ -413,6 +413,7 @@ a:hover {
   .feature-row .feature-media {
     order: 1;
   }
+
   .feature-row .feature-copy {
     order: 2;
   }
@@ -421,54 +422,82 @@ a:hover {
   .feature-row.reverse .feature-media {
     order: 2;
   }
+
   .feature-row.reverse .feature-copy {
     order: 1;
   }
 
-  /* Pin text’s inner edge to the center line */
+  /* Text hugs the midline */
   .feature-row:not(.reverse) .feature-copy {
-    justify-self: start; /* left edge sits on the center (start of right col) */
+    justify-self: start;
     text-align: left;
-    max-width: 60qb;
+    max-width: 60ch;
     margin: 0;
   }
+
   .feature-row.reverse .feature-copy {
-    justify-self: end; /* right edge sits on the center (end of left col) */
+    justify-self: end;
     text-align: right;
     max-width: 60ch;
     margin: 0;
   }
 
-  /* (optional) have image inner edge kiss the center too */
-  .feature-row:not(.reverse) .feature-media {
-    justify-self: end;
-  }
-  .feature-row.reverse .feature-media {
-    justify-self: start;
+  /* Images: centered in their half + gentle inward nudge */
+  .feature-row .feature-media {
+    justify-self: center;
+    transform: translateX(var(--nudge, 0));
+    width: auto; /* don’t force width */
+    max-width: 460px; /* comfortable cap */
   }
 
-  /* Image sizing (same as before) */
-  .feature-media {
-    max-width: 720px;
-  }
-  .feature-media img {
+  .feature-row .feature-media img {
+    width: 100%;
+    height: auto;
     max-height: 380px;
-    object-fit: cover;
+    object-fit: contain; /* keeps full image visible */
+  }
+
+  /* gentle default for all rows */
+  .feature-row:not(.reverse) .feature-media {
+    --nudge: 8%;
+  }
+  .feature-row.reverse .feature-media {
+    --nudge: -8%;
+  }
+
+  /* stronger nudge for the very first row only */
+  .feature-row:first-of-type:not(.reverse) .feature-media {
+    --nudge: 12%;
+  }
+  .feature-row:first-of-type.reverse .feature-media {
+    --nudge: -12%;
   }
 
   /* Headings follow alignment */
   .feature-row .feature-copy h3 {
     margin-top: 0;
   }
+
   .feature-row:not(.reverse) .feature-copy h3 {
     text-align: left;
   }
+
   .feature-row.reverse .feature-copy h3 {
     text-align: right;
   }
 }
 
-/* Big screens: allow a bit wider copy if you like */
+/* Big screens: relax the nudge a bit */
+@media (min-width: 1400px) {
+  .feature-row:not(.reverse) .feature-media {
+    --nudge: 6%;
+  }
+  .feature-row.reverse .feature-media {
+    --nudge: -6%;
+  }
+}
+
+/* Optional: slightly wider text on very large screens */
 @media (min-width: 1200px) {
   .feature-row .feature-copy {
     max-width: 50ch;
