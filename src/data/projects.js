@@ -15,7 +15,7 @@ export const projects = [
     heroShots: [
       "/motivation/rewards.png", // left
       "/motivation/points.png", // center
-      "/motivation/calender.png", // right
+      "/motivation/calender.png", // right (check spelling matches your actual file)
     ],
 
     // ✅ NEW: alternating feature layout (no bullets)
@@ -69,7 +69,7 @@ export const projects = [
   },
 
   // ============================================
-  // SECOND PROJECT (UNCHANGED)
+  // SECOND PROJECT
   // ============================================
   {
     slug: "secure-mood-tracker",
@@ -81,17 +81,44 @@ export const projects = [
     demo: "#",
 
     // (Optional) add a hero later if you want:
-    // heroShots: ["/mindapp/home.png", "/mindapp/phone.png", "/mindapp/share.png"],
+    cover: "/mindapp/home.png",
+    heroAlt: "Mind App – home screen",
+
+    // ✅ NEW: alternating feature layout (matches first project)
+    featuresMedia: [
+      {
+        title: "**Accessible, Mobile-First Experience**",
+        text: "Designed as a Progressive Web App (PWA) with offline support, responsive layouts, and ARIA attributes for assistive technologies. The calm, minimalist interface uses colour psychology and clear visuals to support emotional comfort and usability across all devices.",
+        img: "/mindapp/mobile.png", // replace with your UI/accessibility shot
+      },
+      {
+        title: "**Quick, Intuitive Mood Logging**",
+        text: "Log your mood in seconds using emojis and optional descriptions. The visual-first design makes emotion tracking accessible, expressive, and effortless.",
+        img: "/mindapp/entry.png", // replace with your logging screen
+      },
+      {
+        title: "**End-to-End Encryption with PIN Security**",
+        text: "All data is encrypted client-side using AES through CryptoJS. The user’s PIN acts as the encryption key and is securely hashed before storage, ensuring that neither the PIN nor entries can ever be accessed in plain text.",
+        img: "/mindapp/setpin.png", // replace with an encryption/settings screen
+      },
+      {
+        title: "**Visual Streak Tracker**",
+        text: "A built-in calendar highlights the current day and visually marks each day with a completed entry. This creates a clear, motivating overview of consistency over time—helping users see their emotional tracking streaks at a glance and stay engaged with long-term reflection.",
+        img: "/mindapp/tracker.png", // replace with your calendar/streak view
+      },
+      {
+        title: "**Secure Sharing**",
+        text: "Entries can be exported and shared with trusted individuals through the Web Share API. Only recipients with the correct PIN can decrypt and view the data, keeping sensitive information protected even in transit.",
+        img: "/mindapp/share.png", // replace with a share/export UI
+      },
+    ],
 
     sections: [
       {
         heading: "Overview",
         body: "The Mind app is a mobile-first Progressive Web App (PWA) designed to provide a secure, anonymous space for individuals to track their moods and emotions. Users can log entries with emojis and descriptions, automatically timestamped with date, time, and weather data. All data is encrypted locally using AES with a user-defined PIN, ensuring privacy and control. The app empowers users to reflect on emotional patterns and optionally share encrypted entries with trusted third parties, without storing any personal profiles or external server data.",
       },
-      {
-        heading: "Key Features",
-        body: "• **Emoji-Based Mood Logging** – Universally accessible interface for quick and intuitive emotion capture.\n\n• **Descriptive Entries + Context Data** – Each entry includes user notes plus automatic date, time, and weather details to help identify triggers and long-term patterns.\n\n• **PIN + AES Encryption** – Every entry is encrypted client-side using CryptoJS. The user’s PIN serves as the encryption key and is hashed before storage, ensuring it cannot be read in plain text.\n\n• **Local Storage Privacy** – All data is stored on the user’s device as encrypted JSON, reducing reliance on external servers and strengthening anonymity.\n\n• **Secure Sharing** – Entries can be exported and shared with trusted parties through the Web Share API. Only recipients with the correct PIN can decrypt and view the content.\n\n• **Accessibility & Mobile-First Design** – Built as a PWA with ARIA attributes, keyboard navigation, and responsive layouts, ensuring usability across devices and for diverse user needs.",
-      },
+      // ⛔️ 'Key Features' removed — handled by featuresMedia above
       {
         heading: "Tech Stack",
         body: "JavaScript, HTML, CSS, and CryptoJS for AES encryption. PWA features include service workers for offline support and caching, plus a manifest file for native-like installation. Development was completed in Visual Studio Code with Git for version control and Chrome for testing/debugging.",

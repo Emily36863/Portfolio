@@ -927,3 +927,42 @@ button:focus-visible,
     box-shadow: none !important;
   }
 }
+@media (min-width: 1000px) {
+  /* Mind App only */
+  .project-hero.secure-mood-tracker .project-hero-inner.hero__grid {
+    /* make the image column much wider */
+    grid-template-columns: minmax(420px, 1fr) minmax(640px, 1.8fr) !important;
+  }
+
+  /* remove the 8% left margin that squeezes the image */
+  .project-hero.secure-mood-tracker .hero__copy {
+    margin-left: 0 !important;
+  }
+
+  /* let the media fill its column */
+  .project-hero.secure-mood-tracker .hero-media {
+    max-width: none;
+    margin-top: 0;
+    justify-self: start;
+  }
+  .project-hero.secure-mood-tracker .hero-media img {
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+}
+@media (min-width: 1000px) {
+  /* Center the Mind App hero text more nicely */
+  .project-hero.secure-mood-tracker .hero__copy {
+    margin-left: 4% !important; /* was 8%, now more centered */
+    text-align: left; /* still aligned left, just shifted toward center */
+  }
+
+  /* If you want it visually centered in its half, use: */
+  /* .project-hero.secure-mood-tracker .hero__copy {
+       margin-left: auto !important;
+       margin-right: auto !important;
+       text-align: center;
+       justify-self: center;
+     } */
+}

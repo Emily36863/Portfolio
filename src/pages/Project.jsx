@@ -65,7 +65,7 @@ export default function Project() {
       <section
         className={`section project-hero hero ${
           heroShrink ? "hero--shrink" : ""
-        }`}
+        } ${project.slug}`}
       >
         <div className="project-hero-inner hero__grid">
           <div className="hero__copy">
