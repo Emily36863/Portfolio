@@ -123,12 +123,10 @@ a:hover {
 .section + .section {
   margin-top: 1.25rem;
 }
-
 .section:not(.project-hero) {
   max-width: clamp(940px, 94vw, 1280px);
   margin-inline: auto;
 }
-
 .section h2 {
   position: relative;
   margin: 0 0 0.6rem;
@@ -274,11 +272,9 @@ a:hover {
 
 /* ===== Project Hero (edge-to-edge background + inner max width) ===== */
 .project-hero {
-  /* back inside the page width — no bleed, no horizontal scroll */
   width: 100%;
   margin-left: 0;
   margin-right: 0;
-
   padding: clamp(28px, 6vw, 60px);
   background: linear-gradient(135deg, #fafafa 0%, #eef2ff 100%);
   border: 1px solid #e5e7eb;
@@ -301,7 +297,7 @@ a:hover {
 
 /* Constrain the content inside the edge-to-edge hero */
 .project-hero-inner {
-  max-width: 1440px; /* was 1500 — trim a bit to be safe */
+  max-width: 1440px;
   margin-inline: auto;
   display: grid;
   gap: clamp(16px, 3vw, 28px);
@@ -376,28 +372,74 @@ a:hover {
 /* ===== Alternating Feature Rows ===== */
 .feature-row {
   display: grid;
-  gap: 14px;
-  align-items: center;
-  margin: 22px 0;
+  gap: 24px; /* increased for breathing room */
+  align-items: start; /* align text & image to the top */
+  margin: 32px 0;
 }
+
 @media (min-width: 900px) {
   .feature-row {
-    grid-template-columns: 1.3fr 1fr;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   }
   .feature-row.reverse {
-    grid-template-columns: 1fr 1.3fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  }
+
+  /* Maintain top alignment for reversed rows too */
+  .feature-row .feature-media,
+  .feature-row .feature-copy {
+    align-self: start;
+  }
+
+  /* Ensure headings don’t float away */
+  .feature-row .feature-copy h3 {
+    margin-top: 0;
   }
 }
+
 .feature-media {
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid #e5e7eb;
   box-shadow: 0 6px 18px rgba(17, 24, 39, 0.06);
 }
+
 .feature-media img {
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* Alternate image + text order */
+@media (min-width: 900px) {
+  .feature-row .feature-media {
+    order: 1;
+  }
+  .feature-row .feature-copy {
+    order: 2;
+  }
+  .feature-row.reverse .feature-media {
+    order: 2;
+  }
+  .feature-row.reverse .feature-copy {
+    order: 1;
+  }
+}
+
+/* Control image sizing for uniformity */
+@media (min-width: 900px) {
+  .feature-media {
+    max-width: 720px;
+  }
+  .feature-media img {
+    max-height: 380px; /* balanced — can tweak 360–420px */
+    object-fit: cover; /* keeps consistent framing */
+  }
+}
+
+/* Keep text readable width */
+.feature-row .feature-copy {
+  max-width: 64ch;
 }
 
 /* ===== Gallery ===== */
@@ -622,7 +664,7 @@ button:focus-visible,
 
 /* Base phone frame */
 .hero-fan .phone {
-  position: absolute; /* lock positions on desktop */
+  position: absolute;
   width: 240px;
   border-radius: 16px;
   border: 1px solid #eceff3;
@@ -668,7 +710,7 @@ button:focus-visible,
   z-index: 3;
   opacity: 1;
   box-shadow: 0 18px 44px rgba(17, 24, 39, 0.18);
-  outline: 0; /* you already style focus elsewhere */
+  outline: 0;
 }
 
 /* ===== Mobile: convert to a snap-scrolling carousel ===== */
@@ -696,22 +738,20 @@ button:focus-visible,
   }
 
   .hero-fan .phone {
-    position: relative; /* release from absolute */
-    flex: 0 0 72vw; /* big, readable phone size */
+    position: relative;
+    flex: 0 0 72vw;
     max-width: 420px;
     width: auto;
     height: auto;
-    transform: none; /* no tilt on mobile – clearer */
+    transform: none;
     animation: floatY 4.2s ease-in-out infinite;
     scroll-snap-align: center;
   }
 
-  /* Center one slightly larger by default */
   .hero-fan .phone--center {
     flex-basis: 78vw;
   }
 
-  /* Hover doesn't exist on touch; keep focus/active behavior for a11y */
   .hero-fan .phone:active,
   .hero-fan .phone:focus-visible {
     animation-play-state: paused;
@@ -786,7 +826,6 @@ button:focus-visible,
 
 /* ===== Mobile: show only the center phone, keep the page ===== */
 @media (max-width: 899px) {
-  /* Keep hero layout simple and prevent overflow */
   .project-hero-inner {
     transform: none !important;
   }
@@ -794,7 +833,6 @@ button:focus-visible,
     min-height: auto !important;
   }
 
-  /* Make the fan a single centered image */
   .hero-fan {
     position: relative;
     min-height: 0;
@@ -803,51 +841,23 @@ button:focus-visible,
     overflow: visible;
   }
   .hero-fan .phone {
-    position: relative !important; /* release from absolute */
+    position: relative !important;
     display: block;
     width: min(88vw, 420px);
     height: auto;
-    margin: 0 auto; /* center it */
+    margin: 0 auto;
     transform: none !important;
     animation: none !important;
     box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
   }
   .hero-fan .phone--left,
   .hero-fan .phone--right {
-    display: none !important; /* hide side shots on phones */
+    display: none !important;
   }
 
-  /* Hover effects don’t matter on touch */
   .hero-fan .phone:hover {
     box-shadow: none !important;
     transform: none !important;
-  }
-
-  /* ===== HERO CENTERING & TYPOGRAPHY ===== */
-  .project-hero-inner.hero__grid {
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 24px;
-  }
-
-  .hero__copy {
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .hero__title {
-    font-size: clamp(1.8rem, 6vw, 2.4rem);
-    line-height: 1.2;
-    margin-bottom: 0.4rem;
-  }
-
-  .hero__sub {
-    font-size: clamp(1rem, 4.5vw, 1.1rem);
-    max-width: 40ch;
-    margin: 0 auto;
   }
 
   /* ===== SECTION TEXT CENTERING ===== */
@@ -858,18 +868,15 @@ button:focus-visible,
     text-align: center;
   }
 
-  /* Keep section titles left-aligned */
   .section h2,
   .section h3 {
     text-align: left;
   }
 
-  /* Slightly tighter padding for mobile */
   .section {
     padding: 18px 14px;
   }
 
-  /* Make bullet lists look neat when centered */
   .section ul {
     list-style-position: inside;
     padding-left: 0;
@@ -885,5 +892,31 @@ button:focus-visible,
   .hero-fan .phone:hover {
     transform: none !important;
     box-shadow: none !important;
+  }
+}
+
+/* ===== Feature Media Sizing ===== */
+.feature-media {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 6px 18px rgba(17, 24, 39, 0.06);
+  max-width: 600px; /* reduce overall width */
+  justify-self: center; /* centers the image when it’s smaller */
+}
+
+.feature-media img {
+  width: 100%;
+  height: auto;
+  max-height: 300px; /* lower height limit */
+  object-fit: contain; /* no cropping */
+  display: block;
+  background: #fff; /* clean edges if screenshot has dark bg */
+}
+
+/* Tighter layout for large screens */
+@media (min-width: 900px) {
+  .feature-row {
+    gap: 36px; /* gives breathing space around smaller images */
   }
 }

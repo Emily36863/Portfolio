@@ -11,30 +11,55 @@ export const projects = [
     repo: "#",
     demo: "#",
 
-    // 👇 3-image hero (left, main/center, right) — uses your public/motivation files
+    // 👇 3-image hero (left, main/center, right)
     heroShots: [
-      "/motivation/rewards.png", // left  (your file is spelled 'calender')
-      "/motivation/points.png", // main (center, biggest)
+      "/motivation/rewards.png", // left
+      "/motivation/points.png", // center
       "/motivation/calender.png", // right
     ],
 
+    // ✅ NEW: alternating feature layout (no bullets)
+    featuresMedia: [
+      {
+        title: "**Fully User-Defined System**",
+        text: "All habits, rewards, categories, difficulty levels, and frequencies are defined by the user, not preset. This gives complete flexibility and makes the app usable for a wide audience.",
+        img: "/motivation/addhabit.png",
+      },
+      {
+        title: "**Dynamic Points & Progress System**",
+        text: "The progress bar adapts to the user’s own reward values, showing how close they are to unlocking their next goal rather than following fixed milestones. It resets daily to encourage consistency and provide fresh motivation, while the user’s running points total remains constant to reflect long-term progress.",
+        img: "/motivation/pointsbar.png",
+      },
+      {
+        title: "**Calendar Tracking**",
+        text: "Encourages reflection on long-term progress by showing a visual record of habits completed over weeks and months, helping users step back from day-to-day frustration and recognise their growth.",
+        img: "/motivation/calenderview.png",
+      },
+      {
+        title: "**Daily Habit Pop-up**",
+        text: "A centralised daily checklist designed to bring all of the user’s habits into one view for quick action.",
+        img: "/motivation/dailyhabits.png", // replace with daily view image if you have one
+      },
+      {
+        title: "**Accessible UI & UX**",
+        text: "Navigation and interactions are simple, drawing inspiration from a range of apps. The bottom navigation bar and dynamic triangle button for adding habits/rewards adapt contextually (e.g., changing function on the calendar page). Combined with a clean, neutral design, the app feels accessible and usable across demographics.",
+        img: "/motivation/navbar.png", // replace with nav/UX shot if you have one
+      },
+    ],
+
+    // ✅ Sections for this project (Key Features removed — handled above)
     sections: [
       {
         heading: "Overview",
         body: "A mobile-first Android app designed to help users build long-term, sustainable routines using gamification backed by habit-formation psychology. It combines habit tracking with a points and rewards system, supported by features such as a progress calendar and daily habit view. The app avoids guilt and negative reinforcement, focusing instead on visual motivation and user-defined rewards to encourage consistent, long-term use.",
       },
       {
-        heading: "Key Features",
-        body: "• **Fully User-Defined System** – All habits, rewards, categories, difficulty levels, and frequencies are defined by the user, not preset. This gives complete flexibility and makes the app usable for a wide audience.\n\n• **Dynamic Points & Progress System** – The progress bar adapts to the user’s own reward values, showing how close they are to unlocking their next goal rather than following fixed milestones. It resets daily to encourage consistency and provide fresh motivation, while the user’s running points total remains constant to reflect long-term progress.\n\n• **Calendar Tracking** – Encourages reflection on long-term progress by showing a visual record of habits completed over weeks and months, helping users step back from day-to-day frustration and recognise their growth.\n\n• **Daily Habit Pop-up** – A centralised daily checklist designed to bring all of the user’s habits into one view for quick action.\n\n• **Accessible UI & UX** – Navigation and interactions are simple, drawing inspiration from a range of apps. The bottom navigation bar and dynamic triangle button for adding habits/rewards adapt contextually (e.g., changing function on the calendar page). Combined with a clean, neutral design, the app feels accessible and usable across demographics.",
-      },
-
-      {
         heading: "Tech Stack",
         body: "Java and XML with Android Studio, following an MVVM architecture pattern. Room Database was used for persistent data storage. The interface follows Material Design guidelines. Testing was conducted via Android Emulator (Pixel 6, Android 13).",
       },
       {
         heading: "Challenges Solved",
-        body: "• **Consistency Across Screens** – Initially, points and rewards totals were not updating reliably between different views. This was solved by implementing a shared PointsViewModel to ensure consistent state management across the app.\n\n• **Restructured Progress Bar System** – The first implementation used a continuous points bar that wasn’t motivating. I redesigned it to dynamically show progress toward the *next* reward, creating a clearer and more encouraging visual feedback loop.",
+        body: "• **Consistency Across Screens** – Initially, points and rewards totals were not updating reliably between different views. This was solved by implementing a shared PointsViewModel to ensure consistent state management across the app.\n\n• **Restructured Progress Bar System** – The first implementation used a continuous points bar that wasn’t motivating. I redesigned it to dynamically show progress toward the next reward, creating a clearer and more encouraging visual feedback loop.",
       },
       {
         heading: "Reflection",
@@ -43,6 +68,9 @@ export const projects = [
     ],
   },
 
+  // ============================================
+  // SECOND PROJECT (UNCHANGED)
+  // ============================================
   {
     slug: "secure-mood-tracker",
     title: "Secure Mood Tracker (Mind App)",
