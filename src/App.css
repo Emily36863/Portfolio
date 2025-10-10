@@ -127,6 +127,11 @@ a:hover {
   max-width: clamp(940px, 94vw, 1280px);
   margin-inline: auto;
 }
+/* Make Contact span the page width like the grid */
+.section.contact {
+  max-width: none;
+}
+
 .section h2 {
   position: relative;
   margin: 0 0 0.6rem;
@@ -1008,4 +1013,23 @@ button:focus-visible,
        text-align: center;
        justify-self: center;
      } */
+}
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+  transition: gap 0.2s ease;
+}
+.project-link:hover {
+  gap: 10px;
+}
+.project-link .arrow {
+  font-size: 1.2em;
+  transition: transform 0.2s ease;
+}
+.project-link:hover .arrow {
+  transform: translateX(4px);
 }

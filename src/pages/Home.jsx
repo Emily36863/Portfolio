@@ -46,9 +46,14 @@ export default function Home() {
             {projects.map((p) => (
               <article key={p.slug} className="project-card">
                 <h3 className="project-title">
-                  <Link to={`/projects/${p.slug}`}>{p.title}</Link>
+                  <Link to={`/projects/${p.slug}`} className="project-link">
+                    {p.title}
+                    <span className="arrow">→</span>
+                  </Link>
                 </h3>
+
                 <p>{p.summary}</p>
+
                 <div className="meta-row" style={{ marginTop: 8 }}>
                   {p.tech.slice(0, 4).map((t) => (
                     <span key={t} className="badge-soft">
@@ -56,9 +61,8 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
-                <div style={{ marginTop: 10 }}>
-                  <Link to={`/projects/${p.slug}`}>Read case study →</Link>
-                </div>
+
+                {/* removed "Read case study" block */}
               </article>
             ))}
           </div>

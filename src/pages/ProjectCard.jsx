@@ -1,4 +1,3 @@
-// src/pages/ProjectCard.jsx
 import { Link } from "react-router-dom";
 
 export default function ProjectCard({
@@ -29,9 +28,13 @@ export default function ProjectCard({
         </Link>
       )}
 
-      <h3>
-        <Link to={`/projects/${slug}`}>{title}</Link>
+      <h3 className="project-title">
+        <Link to={`/projects/${slug}`} className="project-link">
+          {title}
+          <span className="arrow">→</span>
+        </Link>
       </h3>
+
       <p>{blurb}</p>
 
       <div className="meta-row" style={{ marginTop: 10 }}>
