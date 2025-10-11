@@ -9,7 +9,7 @@ export default function Home() {
         <h1>Emily Thomson Kearney</h1>
         <p>
           Computer Science graduate exploring UX/UI, secure development &
-          tech-for-good.
+          tech-for-good solutions.
         </p>
       </header>
 
@@ -19,10 +19,11 @@ export default function Home() {
           <section className="section about">
             <h2>About Me</h2>
             <p>
-              I'm passionate about building intuitive, inclusive digital
-              experiences. I enjoy combining design with technical thinking and
-              love working on meaningful projects that make everyday life
-              easier.
+              I create intuitive, inclusive digital experiences that make
+              everyday life easier. With a background in computer science, I
+              understand how systems connect beneath the surface and use
+              AI-assisted tools to design interfaces that are accessible,
+              secure, and meaningful.
             </p>
           </section>
 
@@ -31,10 +32,11 @@ export default function Home() {
             <ul className="skills-list">
               <li>React</li>
               <li>JavaScript</li>
-              <li>Python</li>
+              <li>System-Thinking</li>
               <li>HTML &amp; CSS</li>
-              <li>CryptoJS</li>
               <li>Figma</li>
+              <li>AI-Assisted Development</li>
+              <li>Data Flow</li>
             </ul>
           </section>
         </div>

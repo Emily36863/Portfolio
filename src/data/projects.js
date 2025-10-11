@@ -55,7 +55,7 @@ export const projects = [
       },
       {
         heading: "Tech Stack",
-        body: "Java and XML with Android Studio, following an MVVM architecture pattern. Room Database was used for persistent data storage. The interface follows Material Design guidelines. Testing was conducted via Android Emulator (Pixel 6, Android 13).",
+        body: "Java and XML with Android Studio, following an MVVM architecture pattern. Room Database was used for persistent data storage. The interface follows Material Design guidelines. Testing was conducted via Android Emulator (Pixel 6, Android 13).\n\n Development was completed using AI-assisted workflows, allowing me to focus on system architecture, UX flow, and ensuring the technical implementation matched my design intentions.",
       },
       {
         heading: "Challenges Solved",
@@ -63,7 +63,7 @@ export const projects = [
       },
       {
         heading: "Reflection",
-        body: "This was my first full Android app build, requiring me to manage a project of significant scale. I developed practical skills in version control, Android Studio, Material Design, and Room Database, while also learning how to structure and organise a multi-file project effectively.\n\nFrom a research perspective, I explored behavioural psychology and habit-formation theory, drawing on works such as *Atomic Habits*. A key insight was that habit apps must focus on positive reinforcement, intrinsic motivation, and personalisation. Negative punishment systems (e.g., streak breaks or lost points) can discourage long-term use, so I designed the app to reward progress without punishing setbacks. Allowing users to define their own rewards ensures that achievements feel meaningful and tied to real life, rather than arbitrary in-app milestones.\n\nThis combination of technical development and applied psychology helped me build not just a functioning app, but one designed to genuinely support sustainable behaviour change.",
+        body: "This was my first full Android app build, requiring me to manage a large-scale, multi-file project. I developed practical skills in version control, Android Studio, Material Design, and Room Database, while learning how to structure an app effectively.\n\n My research into behavioural psychology and habit formation, drawing on works such as Atomic Habits, showed that sustainable habit-building depends on positive reinforcement and personalisation, not punishment. Apps that penalise users (e.g., streak breaks or lost points) can discourage long-term engagement. I applied this by designing a system that rewards progress, lets users define their own rewards, and focuses on intrinsic motivation.\n\n Combining this research with practical development taught me how to align design and technology to support genuine behaviour change — building an app that motivates users through clarity, autonomy, and reward, rather than guilt.",
       },
     ],
   },
@@ -121,7 +121,7 @@ export const projects = [
       // ⛔️ 'Key Features' removed — handled by featuresMedia above
       {
         heading: "Tech Stack",
-        body: "JavaScript, HTML, CSS, and CryptoJS for AES encryption. PWA features include service workers for offline support and caching, plus a manifest file for native-like installation. Development was completed in Visual Studio Code with Git for version control and Chrome for testing/debugging.",
+        body: "JavaScript, HTML, CSS, and CryptoJS for AES encryption. PWA features include service workers for offline support and caching, plus a manifest file for native-like installation. Development was completed in Visual Studio Code with Git for version control and Chrome for testing/debugging.\n\n Built using AI-assisted development tools to streamline the encryption setup and focus on crafting a secure, privacy-first user experience.",
       },
       {
         heading: "Challenges Solved",
@@ -129,7 +129,7 @@ export const projects = [
       },
       {
         heading: "Reflection",
-        body: "This project highlighted the importance of building mental health tools that prioritise trust, privacy, and usability. By adopting a 'security-first' approach, I learned how to apply AES encryption effectively with client-side storage, ensuring that sensitive data remained fully under user control. Accessibility was a key focus, with features such as ARIA attributes, intuitive emojis, and colour psychology to create a calm, user-friendly interface. Technically, I developed my skills in Progressive Web App architecture, service workers, and handling local storage securely. I also gained experience in balancing scope within strict deadlines, prioritising essential features like encryption and offline support over non-critical extras. Ultimately, the app demonstrated how user research, secure design, and accessible UI can combine to make digital health tools both practical and trustworthy.",
+        body: "This project highlighted the importance of building mental health tools that prioritise trust, privacy, and usability. Adopting a security-first approach taught me how to apply AES encryption with client-side storage to keep sensitive data fully under user control.\n\n Accessibility was also a key focus, with features such as ARIA attributes, intuitive emoji-based logging, and calming colour psychology to create a supportive user experience.\n\n Technically, I developed practical skills in Progressive Web App architecture, service workers, and secure local storage. I also learned how to balance scope within strict deadlines — prioritising core features like encryption and offline support over non-essential extras.\n\n Ultimately, this project reinforced how secure design, accessibility, and user empathy can work together to create digital health tools that are both trustworthy and effective.",
       },
     ],
   },

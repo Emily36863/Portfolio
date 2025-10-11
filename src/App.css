@@ -90,6 +90,11 @@ p {
   margin: 0.5rem 0;
   color: #374151;
 }
+/* Make main body text slightly larger */
+body p,
+body li {
+  font-size: 1.1rem;
+}
 
 a {
   color: var(--brand);
@@ -1317,4 +1322,25 @@ button:focus-visible,
   background: var(--chip-bg) !important;
   border: 1px solid var(--chip-border) !important;
   color: var(--chip-text) !important;
+}
+
+/* Global body copy size */
+:root {
+  --body-copy: 1.1rem;
+}
+
+body p,
+body li {
+  font-size: var(--body-copy);
+}
+
+/* Project pages override */
+.case-prose p,
+.case-prose li {
+  font-size: var(--body-copy);
+}
+
+/* (Optional) contact row */
+.contact-row p {
+  font-size: var(--body-copy);
 }
