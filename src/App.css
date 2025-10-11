@@ -98,6 +98,41 @@ a {
 a:hover {
   text-decoration: underline;
 }
+/* Collapsible header layout only (no typography overrides) */
+.case-prose details {
+  margin-top: 12px;
+}
+.case-prose details summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+  padding: 0;
+}
+.case-prose details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Chevron */
+.case-prose details summary::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #6b7280;
+  border-bottom: 2px solid #6b7280;
+  transform: rotate(-45deg);
+  transition: transform 150ms ease;
+  flex: 0 0 10px;
+}
+.case-prose details[open] summary::before {
+  transform: rotate(45deg);
+}
+
+/* Let the <h2> keep its own styles (border, underline, size) */
+.case-prose details summary h2 {
+  margin: 0; /* so it lines up with the chevron */
+}
 
 /* ===== Header (site) ===== */
 .header {
@@ -203,12 +238,12 @@ a:hover {
 }
 .skills-list li {
   background: var(--brand-light);
-  color: var(--brand-dark);
+  color: var(--text);
   padding: 6px 12px;
   border-radius: 999px;
   font-size: 14px;
   font-weight: 500;
-  border: 1px solid #e9d5ff;
+  border: 1px solid rgba(155, 93, 229, 0.35);
 }
 
 /* ===== Case Study Prose & Accordions ===== */
@@ -383,9 +418,9 @@ a:hover {
   border-radius: 999px;
   font-weight: 600;
   font-size: 12px;
-  border: 1px solid #e9d5ff;
+  border: 1px solid rgba(155, 93, 229, 0.35);
   background: var(--brand-light);
-  color: var(--brand-dark);
+  color: var(--text);
 }
 /* ===== Alternating Feature Rows — center locked to page middle ===== */
 
@@ -1032,4 +1067,254 @@ button:focus-visible,
 }
 .project-link:hover .arrow {
   transform: translateX(4px);
+}
+/* =========================
+   Dark theme + matching purple accents (#9B5DE5)
+   ========================= */
+
+/* ---- Tokens ---- */
+:root {
+  /* Base surfaces */
+  --bg: #1f2328; /* page background (dark grey like your ref) */
+  --card: #262b31; /* cards / panels */
+  --elev: #2b3138; /* raised pieces (hover, media) */
+  --border: #313842; /* borders / dividers */
+
+  /* Text */
+  --text: #e5e7eb; /* primary text */
+  --muted: #9aa4b2; /* secondary text */
+
+  /* Brand purples (customized) */
+  --brand: #9b5de5; /* main accent */
+  --brand-dark: #7e3fd1; /* stronger / hover */
+  --brand-light: rgba(155, 93, 229, 0.14); /* soft chip bg / badges */
+}
+
+/* ---- Page / global ---- */
+html,
+body,
+#root {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Default paragraph color */
+p {
+  color: var(--muted);
+}
+
+/* Links */
+a {
+  color: var(--brand);
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Header subtitle */
+.header p {
+  color: var(--muted);
+}
+
+/* ---- Cards / sections ---- */
+.section {
+  background: var(--card);
+  border-color: var(--border);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+.section h2 {
+  border-bottom-color: var(--border);
+}
+.section h2::after {
+  background: var(--brand);
+}
+.section .subsep {
+  border-top-color: var(--border);
+}
+
+/* Projects */
+.project-card {
+  background: var(--card);
+  border-color: var(--border);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+.project-card:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.42);
+}
+
+/* Skills chips */
+.skills-list li {
+  background: var(--brand-light);
+  color: var(--text);
+  border: 1px solid rgba(155, 93, 229, 0.35);
+}
+
+/* Badges in case prose */
+.case-prose summary .badge {
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  border-color: #3b2e42;
+}
+.case-prose summary {
+  color: var(--text);
+}
+.case-prose details > *:not(summary) {
+  color: var(--muted);
+}
+
+/* ---- Hero ---- */
+
+.project-hero {
+  background: radial-gradient(
+      900px 600px at 20% -10%,
+      rgba(155, 93, 229, 0.12),
+      transparent 60%
+    ),
+    linear-gradient(135deg, #1f2328 0%, #3b2e42 65%, #362643 100%);
+  border-color: var(--border);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+}
+
+.hero__sub {
+  color: var(--muted);
+}
+
+.hero-media {
+  background: var(--card);
+  border-color: var(--border);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.38);
+}
+
+/* Feature media (gallery cards too) */
+.feature-media,
+.gallery-item {
+  background: var(--card);
+  border-color: var(--border);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.34);
+}
+
+/* Lightbox */
+.lightbox {
+  background: rgba(6, 10, 14, 0.86);
+}
+.lightbox img {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.lightbox .close {
+  background: var(--card);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+/* Footer */
+.footer {
+  background: var(--card);
+  border-top-color: var(--border);
+  color: var(--muted);
+}
+.footer a {
+  color: var(--brand);
+}
+
+/* Buttons */
+.btn {
+  background: var(--card);
+  color: var(--text);
+  border-color: var(--border);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+.btn.primary {
+  background: var(--brand);
+  color: #0e0615;
+  border-color: transparent;
+}
+.btn.primary:hover {
+  background: var(--brand-dark);
+}
+.btn.secondary {
+  background: #20252b;
+}
+
+.btn:hover {
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.34);
+}
+
+/* Accessibility outlines */
+a:focus-visible,
+button:focus-visible,
+.project-card:focus-within {
+  outline: 3px solid var(--brand);
+}
+
+/* Chevron in details */
+.case-prose summary::before {
+  border-right-color: #95a1b1;
+  border-bottom-color: #95a1b1;
+}
+
+/* Back arrow */
+.back-arrow {
+  color: var(--brand);
+}
+.back-arrow:hover {
+  color: var(--brand-dark);
+}
+
+/* === Accent override (purple -> #3b2e42) === */
+:root {
+  --brand: #60278f; /* main accent */
+  --brand-dark: #2a2130; /* hover/darker accent */
+  --brand-light: rgba(59, 46, 66, 0.14); /* soft chip/bg tint */
+  --brand-outline: rgba(59, 46, 66, 0.35); /* subtle borders matching accent */
+}
+/* BEFORE */
+/* .skills-list li { border: 1px solid rgba(155, 93, 229, 0.35); } */
+/* .badge-soft     { border: 1px solid rgba(155, 93, 229, 0.35); } */
+
+/* AFTER */
+.skills-list li {
+  border: 1px solid var(--brand-outline);
+}
+.badge-soft {
+  border: 1px solid var(--brand-outline);
+}
+
+/* BEFORE */
+.project-hero {
+  background: radial-gradient(
+      900px 600px at 20% -10%,
+      rgba(155, 93, 229, 0.12),
+      /* <- old purple */ transparent 60%
+    ),
+    linear-gradient(135deg, #1f2328 0%, #3b2e42 65%, #362643 100%);
+}
+
+/* AFTER */
+.project-hero {
+  background: radial-gradient(
+      900px 600px at 20% -10%,
+      rgba(59, 46, 66, 0.12),
+      /* new accent glow */ transparent 60%
+    ),
+    linear-gradient(135deg, #1f2328 0%, #3b2e42 65%, #362643 100%);
+}
+/* === Keep chips/tags in their original purple, independent of --brand === */
+:root {
+  --chip-bg: rgba(155, 93, 229, 0.14); /* was var(--brand-light) */
+  --chip-border: rgba(155, 93, 229, 0.35);
+  --chip-text: #e5e7eb;
+}
+
+/* Skills pills */
+.skills-list li {
+  background: var(--chip-bg) !important;
+  border: 1px solid var(--chip-border) !important;
+  color: var(--chip-text) !important;
+}
+
+/* Tech tag pills under project cards (they use .badge-soft) */
+.badge-soft {
+  background: var(--chip-bg) !important;
+  border: 1px solid var(--chip-border) !important;
+  color: var(--chip-text) !important;
 }

@@ -104,7 +104,10 @@ export default function Project() {
           <div className="case-prose">
             <h2 style={{ marginTop: 20 }}>Key Features</h2>
             {project.featuresMedia.map((f, idx) => (
-              <div className={`feature-row ${idx % 2 ? "reverse" : ""}`}>
+              <div
+                key={idx}
+                className={`feature-row ${idx % 2 ? "reverse" : ""}`}
+              >
                 <div
                   className="feature-media"
                   onClick={() => f?.img && setLightboxSrc(f.img)}
@@ -156,7 +159,7 @@ export default function Project() {
           <div className="case-prose">
             <details>
               <summary>
-                <h3 style={{ display: "inline" }}>Challenges Solved</h3>
+                <h2>Challenges Solved</h2>
               </summary>
               <Body
                 text={
@@ -176,7 +179,7 @@ export default function Project() {
           <div className="case-prose">
             <details>
               <summary>
-                <h3 style={{ display: "inline" }}>Reflection</h3>
+                <h2>Reflection</h2>
               </summary>
               <Body
                 text={
