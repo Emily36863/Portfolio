@@ -90,11 +90,6 @@ p {
   margin: 0.5rem 0;
   color: #374151;
 }
-/* Make main body text slightly larger */
-body p,
-body li {
-  font-size: 1.1rem;
-}
 
 a {
   color: var(--brand);
@@ -1153,7 +1148,7 @@ a:hover {
   color: var(--text);
   border: 1px solid rgba(155, 93, 229, 0.35);
 }
-
+/*hi */
 /* Badges in case prose */
 .case-prose summary .badge {
   background: var(--brand-light);
@@ -1272,9 +1267,6 @@ button:focus-visible,
   --brand-light: rgba(59, 46, 66, 0.14); /* soft chip/bg tint */
   --brand-outline: rgba(59, 46, 66, 0.35); /* subtle borders matching accent */
 }
-/* BEFORE */
-/* .skills-list li { border: 1px solid rgba(155, 93, 229, 0.35); } */
-/* .badge-soft     { border: 1px solid rgba(155, 93, 229, 0.35); } */
 
 /* AFTER */
 .skills-list li {
@@ -1322,25 +1314,4 @@ button:focus-visible,
   background: var(--chip-bg) !important;
   border: 1px solid var(--chip-border) !important;
   color: var(--chip-text) !important;
-}
-
-/* Global body copy size */
-:root {
-  --body-copy: 1.1rem;
-}
-
-body p,
-body li {
-  font-size: var(--body-copy);
-}
-
-/* Project pages override */
-.case-prose p,
-.case-prose li {
-  font-size: var(--body-copy);
-}
-
-/* (Optional) contact row */
-.contact-row p {
-  font-size: var(--body-copy);
 }
