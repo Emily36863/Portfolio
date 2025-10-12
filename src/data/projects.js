@@ -1,6 +1,8 @@
 // src/data/projects.js
 // NOTE: Images are in /public, so we reference them with absolute paths (no imports).
 
+const pub = (p) => `${import.meta.env.BASE_URL}${p.replace(/^\/+/, "")}`;
+
 export const projects = [
   {
     slug: "motivation-app",
@@ -13,9 +15,9 @@ export const projects = [
 
     // 👇 3-image hero (left, main/center, right)
     heroShots: [
-      "/motivation/rewards.png", // left
-      "/motivation/points.png", // center
-      "/motivation/calender.png", // right (check spelling matches your actual file)
+      pub("motivation/rewards.png"),
+      pub("motivation/points.png"),
+      pub("motivation/calender.png"), // right (check spelling matches your actual file)
     ],
 
     // ✅ NEW: alternating feature layout (no bullets)
@@ -28,22 +30,22 @@ export const projects = [
       {
         title: "**Dynamic Points & Progress System**",
         text: "The progress bar adapts to the user’s own reward values, showing how close they are to unlocking their next goal rather than following fixed milestones. It resets daily to encourage consistency and provide fresh motivation, while the user’s running points total remains constant to reflect long-term progress.",
-        img: "/motivation/pointsbar.png",
+        img: pub("motivation/addhabit.png"),
       },
       {
         title: "**Calendar Tracking**",
         text: "Encourages reflection on long-term progress by showing a visual record of habits completed over weeks and months, helping users step back from day-to-day frustration and recognise their growth.",
-        img: "/motivation/calenderview.png",
+        img: pub("motivation/pointsbar.png"),
       },
       {
         title: "**Daily Habit Pop-up**",
         text: "A centralised daily checklist designed to bring all of the user’s habits into one view for quick action.",
-        img: "/motivation/dailyhabits.png", // replace with daily view image if you have one
+        img: pub("motivation/calenderview.png"), // replace with daily view image if you have one
       },
       {
         title: "**Accessible UI & UX**",
         text: "Navigation and interactions are simple, drawing inspiration from a range of apps. The bottom navigation bar and dynamic triangle button for adding habits/rewards adapt contextually (e.g., changing function on the calendar page). Combined with a clean, neutral design, the app feels accessible and usable across demographics.",
-        img: "/motivation/navbar.png", // replace with nav/UX shot if you have one
+        img: pub("motivation/dailyhabits.png"), // replace with nav/UX shot if you have one
       },
     ],
 
@@ -81,7 +83,7 @@ export const projects = [
     demo: "#",
 
     // (Optional) add a hero later if you want:
-    cover: "/mindapp/home.png",
+    cover: pub("mindapp/home.png"),
     heroAlt: "Mind App – home screen",
 
     // ✅ NEW: alternating feature layout (matches first project)
@@ -89,27 +91,27 @@ export const projects = [
       {
         title: "**Accessible, Mobile-First Experience**",
         text: "Designed as a Progressive Web App (PWA) with offline support, responsive layouts, and ARIA attributes for assistive technologies. The calm, minimalist interface uses colour psychology and clear visuals to support emotional comfort and usability across all devices.",
-        img: "/mindapp/mobile.png", // replace with your UI/accessibility shot
+        img: pub("/mindapp/mobile.png"), // replace with your UI/accessibility shot
       },
       {
         title: "**Quick, Intuitive Mood Logging**",
         text: "Log your mood in seconds using emojis and optional descriptions. The visual-first design makes emotion tracking accessible, expressive, and effortless.",
-        img: "/mindapp/entry.png", // replace with your logging screen
+        img: pub("/mindapp/entry.png"), // replace with your logging screen
       },
       {
         title: "**End-to-End Encryption with PIN Security**",
         text: "All data is encrypted client-side using AES through CryptoJS. The user’s PIN acts as the encryption key and is securely hashed before storage, ensuring that neither the PIN nor entries can ever be accessed in plain text.",
-        img: "/mindapp/setpin.png", // replace with an encryption/settings screen
+        img: pub("/mindapp/setpin.png"), // replace with an encryption/settings screen
       },
       {
         title: "**Visual Streak Tracker**",
         text: "A built-in calendar highlights the current day and visually marks each day with a completed entry. This creates a clear, motivating overview of consistency over time—helping users see their emotional tracking streaks at a glance and stay engaged with long-term reflection.",
-        img: "/mindapp/tracker.png", // replace with your calendar/streak view
+        img: pub("/mindapp/tracker.png"), // replace with your calendar/streak view
       },
       {
         title: "**Secure Sharing**",
         text: "Entries can be exported and shared with trusted individuals through the Web Share API. Only recipients with the correct PIN can decrypt and view the data, keeping sensitive information protected even in transit.",
-        img: "/mindapp/share.png", // replace with a share/export UI
+        img: pub("/mindapp/share.png"), // replace with a share/export UI
       },
     ],
 
