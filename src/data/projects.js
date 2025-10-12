@@ -25,12 +25,12 @@ export const projects = [
       {
         title: "**Fully User-Defined System**",
         text: "All habits, rewards, categories, difficulty levels, and frequencies are defined by the user, not preset. This gives complete flexibility and makes the app usable for a wide audience.",
-        img: "/motivation/addhabit.png",
+        img: pub("motivation/addhabit.png"),
       },
       {
         title: "**Dynamic Points & Progress System**",
         text: "The progress bar adapts to the user’s own reward values, showing how close they are to unlocking their next goal rather than following fixed milestones. It resets daily to encourage consistency and provide fresh motivation, while the user’s running points total remains constant to reflect long-term progress.",
-        img: pub("motivation/addhabit.png"),
+        img: pub("motivation/pointsbar.png"),
       },
       {
         title: "**Calendar Tracking**",
