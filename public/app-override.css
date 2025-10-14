@@ -1344,16 +1344,3 @@ body li {
 .contact-row p {
   font-size: var(--body-copy);
 }
-
-/* DEBUG */
-body {
-  outline: 6px solid magenta !important;
-}
-
-/* DEBUG */
-html {
-  background: #ff00ff !important;
-} /* neon page background */
-h1 {
-  color: #39ff14 !important;
-} /* neon green headings */
