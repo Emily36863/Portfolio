@@ -1344,3 +1344,152 @@ body li {
 .contact-row p {
   font-size: var(--body-copy);
 }
+
+/* ===== GitHub Pages visual match: type + spacing tighten ===== */
+
+/* Kill the debug outline if it slipped in */
+body {
+  outline: none !important;
+}
+
+/* Make headings a notch smaller so the header doesn’t push the layout down */
+:root {
+  --h1-max: 2.6rem; /* was ~3.6 on hero pages, ~3 on home; this keeps it compact */
+  --h2-max: 1.8rem;
+  --h3-max: 1.35rem;
+}
+
+/* Tighter clamps = same vibe, less height */
+h1 {
+  font-size: clamp(1.9rem, 3vw, var(--h1-max));
+}
+h2 {
+  font-size: clamp(1.25rem, 2.2vw, var(--h2-max));
+}
+h3 {
+  font-size: clamp(1.05rem, 1.8vw, var(--h3-max));
+}
+
+/* Make body copy slightly smaller so cards don’t stretch */
+body p,
+body li {
+  font-size: 1.05rem;
+}
+.project-card p {
+  font-size: 1rem;
+}
+
+/* Section padding: pull in globally, then trim Projects extra bottom space */
+.section {
+  padding: clamp(12px, 1.6vw, 16px);
+}
+.projects.section {
+  padding-block: clamp(12px, 1.6vw, 16px) clamp(8px, 1.2vw, 12px);
+}
+.projects .projects-grid {
+  margin-top: 12px;
+} /* was 24px */
+
+/* Keep the homepage feeling like a one-screen “card” on desktop */
+@media (min-width: 1200px) {
+  .app {
+    min-height: 100svh;
+  } /* fill viewport without forcing extra space */
+  .home-grid {
+    align-items: start;
+  }
+  .left-col,
+  .projects.section {
+    margin-bottom: 0;
+  }
+  .footer {
+    margin-top: 6px;
+  }
+}
+
+/* Ensure chips/buttons don’t look oversized on Pages’ fallback fonts */
+.badge-soft,
+.skills-list li {
+  font-size: 13px;
+}
+.btn {
+  padding: 9px 12px;
+  font-size: 13px;
+}
+
+/* ===== Project pages — size & margin fixes for GH ===== */
+
+/* Give the hero more breathing room but keep it compact */
+.project-hero {
+  position: relative;
+  padding: clamp(22px, 4vw, 44px);
+  border-radius: 24px;
+}
+
+/* Stop the unintended upscaling and lock a sane inner width */
+.project-hero-inner {
+  max-width: 1200px; /* side margins like localhost */
+  margin-inline: auto;
+  padding-inline: clamp(12px, 3vw, 28px);
+  gap: clamp(16px, 2.6vw, 28px);
+  transform: none !important; /* kill the 1.04 scale */
+}
+
+/* Desktop layout: smaller media, balanced columns */
+@media (min-width: 1000px) {
+  .project-hero-inner.hero__grid {
+    grid-template-columns: 1.05fr 0.95fr; /* copy/media balance like local */
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 3.2vw, 3rem);
+  }
+  .hero__sub {
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+  }
+
+  /* Shrink the phone stack */
+  .hero-media {
+    justify-self: end;
+    max-width: min(520px, 42vw);
+  }
+  .hero-media img {
+    width: 100%;
+    height: auto;
+    max-height: 520px;
+    object-fit: contain;
+  }
+}
+
+/* Make sure the floating back arrow never looks “under” the hero content */
+.back-arrow {
+  z-index: 20;
+}
+
+/* Nudge hero copy in a touch so it never kisses the arrow on big screens */
+@media (min-width: 900px) {
+  .project-hero .hero__copy {
+    padding-left: 24px;
+  }
+}
+
+/* Features section: tighten vertical rhythm and image size */
+.feature-row {
+  margin: 24px 0;
+}
+@media (min-width: 900px) {
+  .feature-row .feature-media {
+    max-width: 420px;
+  }
+  .feature-row .feature-media img {
+    max-height: 320px;
+    object-fit: contain;
+  }
+}
+
+/* Huge screens: keep the same “card” feel (don’t let it stretch too wide) */
+@media (min-width: 1400px) {
+  .project-hero-inner {
+    max-width: 1100px;
+  }
+}
