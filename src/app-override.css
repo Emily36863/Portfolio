@@ -1349,13 +1349,13 @@ body li {
 @media (min-width: 1000px) {
   /* 1) Global scale down */
   html {
-    font-size: 14px;
+    font-size: 15px;
   } /* ← big lever; was ~16 */
 
   /* 2) Header */
   .header h1 {
-    font-size: clamp(1.6rem, 2.2vw, 1.9rem);
-    line-height: 1.12;
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    line-height: 1.1;
   }
   .header p {
     font-size: 0.9rem;
@@ -1386,7 +1386,7 @@ body li {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
   }
   .projects .project-card h3 {
-    font-size: clamp(0.95rem, 1.4vw, 1.12rem);
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
     line-height: 1.2;
     margin: 0 0 6px;
   }
@@ -1418,13 +1418,14 @@ body li {
 
 /* Slightly smaller section titles on all screens so they don't dominate */
 .section h2 {
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  line-height: 1.25;
 }
 
 /* ===== TIGHTER PAGE WIDTH + BALANCED LAYOUT ===== */
 @media (min-width: 1200px) {
   .app {
-    max-width: 1250px; /* was 1500px */
+    max-width: 1200px; /* was 1500px */
     margin: 0 auto;
     padding-inline: clamp(16px, 2vw, 28px);
   }
@@ -1514,5 +1515,42 @@ body li {
   }
   .feature-row .feature-media img {
     max-height: 280px;
+  }
+}
+
+/* ===== Project hero image sizing fix ===== */
+@media (min-width: 1000px) {
+  .hero-media {
+    justify-self: end;
+    max-width: clamp(260px, 25vw, 340px); /* narrower cap */
+  }
+
+  .hero-media img {
+    width: 100%;
+    height: auto;
+    max-height: clamp(300px, 28vw, 360px);
+    object-fit: contain;
+  }
+
+  /* Adjust text to balance with smaller images */
+  .hero__title {
+    font-size: clamp(2.1rem, 2.8vw, 2.5rem);
+    line-height: 1.15;
+  }
+
+  .hero__sub {
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+    max-width: 90%;
+  }
+}
+
+/* ===== Extra safety for ultra-wide screens ===== */
+@media (min-width: 1400px) {
+  .hero-media {
+    max-width: 360px;
+  }
+
+  .hero-media img {
+    max-height: 360px;
   }
 }
