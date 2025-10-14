@@ -1424,7 +1424,7 @@ body li {
 /* ===== TIGHTER PAGE WIDTH + BALANCED LAYOUT ===== */
 @media (min-width: 1200px) {
   .app {
-    max-width: 1150px; /* was 1500px */
+    max-width: 1250px; /* was 1500px */
     margin: 0 auto;
     padding-inline: clamp(16px, 2vw, 28px);
   }
@@ -1440,5 +1440,79 @@ body li {
 
   .footer {
     margin-top: 6px;
+  }
+}
+/* === Make About + Skills + Contact match Projects (desktop) === */
+@media (min-width: 1000px) {
+  /* Match body text size/line-height with project cards */
+  .home-grid .section p,
+  .home-grid .section li,
+  .contact.section p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* Keep their headings a touch smaller too */
+  .home-grid .section h2 {
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+  }
+
+  /* Ensure padding is the same tightness as cards */
+  .left-col .section,
+  .contact.section {
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+}
+/* ===== Project pages: shrink hero images & balance columns ===== */
+@media (min-width: 1000px) {
+  /* make the media column smaller than the text column */
+  .project-hero-inner.hero__grid {
+    grid-template-columns: 1.15fr 0.85fr; /* text | media */
+    align-items: center;
+  }
+
+  /* hard cap the phone stack size */
+  .hero-media {
+    justify-self: end;
+    max-width: clamp(340px, 32vw, 440px);
+  }
+  .hero-media img {
+    width: 100%;
+    height: auto;
+    max-height: clamp(340px, 32vw, 440px);
+    object-fit: contain;
+  }
+
+  /* keep the title from feeling oversized next to the smaller phones */
+  .hero__title {
+    font-size: clamp(1.9rem, 2.6vw, 2.4rem);
+    line-height: 1.15;
+  }
+  .hero__sub {
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  }
+}
+
+/* ultra-wide screens: don’t let images creep up again */
+@media (min-width: 1400px) {
+  .hero-media {
+    max-width: 420px;
+  }
+  .hero-media img {
+    max-height: 420px;
+  }
+}
+
+/* ===== Feature rows (below the hero): smaller previews ===== */
+.feature-row {
+  margin: 20px 0;
+}
+@media (min-width: 900px) {
+  .feature-row .feature-media {
+    max-width: 360px;
+  }
+  .feature-row .feature-media img {
+    max-height: 280px;
   }
 }
