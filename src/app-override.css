@@ -1653,52 +1653,41 @@ img {
   min-height: clamp(420px, 70vh, 860px) !important;
 }
 
-/* 3) ***THE FIX*** – force smaller phone widths on desktop */
+/* --- dial the hero phones UP a bit --- */
 @media (min-width: 1000px) {
-  .project-hero .hero-fan {
-    min-height: 460px !important;
-  }
-
-  .project-hero .hero-fan .phone,
-  .project-hero .hero-fan .phone--left,
-  .project-hero .hero-fan .phone--right,
+  /* phones */
   .project-hero .hero-fan .phone--center {
-    width: auto !important; /* wipe earlier fixed px widths */
-    max-width: none !important;
-  }
-
-  /* new caps */
-  .project-hero .hero-fan .phone--center {
-    width: clamp(170px, 16vw, 220px) !important;
+    width: clamp(200px, 19vw, 260px) !important;
   }
   .project-hero .hero-fan .phone--left,
   .project-hero .hero-fan .phone--right {
-    width: clamp(150px, 14vw, 200px) !important;
+    width: clamp(180px, 17vw, 240px) !important;
   }
 
-  /* if the hero also shows a single <img> block, cap that too */
+  /* single-image hero cap (if used) */
   .project-hero .hero-media {
-    max-width: clamp(280px, 24vw, 340px) !important;
+    max-width: clamp(320px, 26vw, 380px) !important;
   }
   .project-hero .hero-media img {
-    max-height: clamp(280px, 26vw, 340px) !important;
+    max-height: clamp(320px, 27vw, 380px) !important;
     object-fit: contain !important;
   }
 }
 
-/* 4) ultra-wide guards so sizes never creep up on big monitors */
+/* ultra-wide guards (keep it nice on big monitors) */
 @media (min-width: 1400px) {
   .project-hero .hero-fan .phone--center {
-    width: 220px !important;
+    width: 260px !important;
   }
   .project-hero .hero-fan .phone--left,
   .project-hero .hero-fan .phone--right {
-    width: 200px !important;
+    width: 240px !important;
   }
+
   .project-hero .hero-media {
-    max-width: 320px !important;
+    max-width: 360px !important;
   }
   .project-hero .hero-media img {
-    max-height: 320px !important;
+    max-height: 360px !important;
   }
 }
