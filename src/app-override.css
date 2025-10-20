@@ -1632,3 +1632,73 @@ img {
     font-size: clamp(0.95rem, 1.15vw, 1.05rem) !important;
   }
 }
+/* ======================================================
+   MOTIVATION APP — HERO PHONES: HARD CAP (FINAL OVERRIDE)
+   Paste at the very end of your CSS
+   ====================================================== */
+
+/* 0) global safety */
+img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* 1) stop the inner hero container from upscaling everything */
+.project-hero .project-hero-inner {
+  transform: none !important;
+}
+
+/* 2) keep the hero itself shorter so visuals don't dominate */
+.project-hero.hero {
+  min-height: clamp(420px, 70vh, 860px) !important;
+}
+
+/* 3) ***THE FIX*** – force smaller phone widths on desktop */
+@media (min-width: 1000px) {
+  .project-hero .hero-fan {
+    min-height: 460px !important;
+  }
+
+  .project-hero .hero-fan .phone,
+  .project-hero .hero-fan .phone--left,
+  .project-hero .hero-fan .phone--right,
+  .project-hero .hero-fan .phone--center {
+    width: auto !important; /* wipe earlier fixed px widths */
+    max-width: none !important;
+  }
+
+  /* new caps */
+  .project-hero .hero-fan .phone--center {
+    width: clamp(170px, 16vw, 220px) !important;
+  }
+  .project-hero .hero-fan .phone--left,
+  .project-hero .hero-fan .phone--right {
+    width: clamp(150px, 14vw, 200px) !important;
+  }
+
+  /* if the hero also shows a single <img> block, cap that too */
+  .project-hero .hero-media {
+    max-width: clamp(280px, 24vw, 340px) !important;
+  }
+  .project-hero .hero-media img {
+    max-height: clamp(280px, 26vw, 340px) !important;
+    object-fit: contain !important;
+  }
+}
+
+/* 4) ultra-wide guards so sizes never creep up on big monitors */
+@media (min-width: 1400px) {
+  .project-hero .hero-fan .phone--center {
+    width: 220px !important;
+  }
+  .project-hero .hero-fan .phone--left,
+  .project-hero .hero-fan .phone--right {
+    width: 200px !important;
+  }
+  .project-hero .hero-media {
+    max-width: 320px !important;
+  }
+  .project-hero .hero-media img {
+    max-height: 320px !important;
+  }
+}
