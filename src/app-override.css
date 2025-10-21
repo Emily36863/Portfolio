@@ -1563,11 +1563,11 @@ img {
 /* Ultra-wide guard so nothing creeps up again */
 @media (min-width: 1400px) {
   .project-hero .hero-fan .phone--center {
-    width: 260px !important;
+    width: 310px !important;
   }
   .project-hero .hero-fan .phone--left,
   .project-hero .hero-fan .phone--right {
-    width: 240px !important;
+    width: 280px !important;
   }
   .project-hero .hero-media {
     max-width: 360px !important;
@@ -1576,24 +1576,20 @@ img {
     max-height: 360px !important;
   }
 }
-/* ======================================================
-   MIND APP HERO — enlarge single preview image
-   ====================================================== */
 
-/* Match the ID or route name you use for the Mind App section */
-#secure-mood-tracker .hero-media,
-.project-hero.mind-app .hero-media {
-  max-width: clamp(420px, 40vw, 640px) !important; /* allow larger size */
-}
+/* Secure Mood Tracker (single-image hero) */
+@media (min-width: 1000px) {
+  .project-hero.secure-mood-tracker .project-hero-inner.hero__grid {
+    grid-template-columns: 1.05fr 1.25fr !important; /* more room for image */
+    align-items: center !important;
+  }
 
-#secure-mood-tracker .hero-media img,
-.project-hero.mind-app .hero-media img {
-  max-height: clamp(420px, 38vw, 640px) !important;
-  object-fit: contain !important;
-}
-
-/* Optional: lift hero slightly shorter for balance if it feels too tall */
-#secure-mood-tracker.project-hero.hero,
-.project-hero.mind-app.hero {
-  min-height: clamp(500px, 78vh, 940px) !important;
+  .project-hero.secure-mood-tracker .hero-media {
+    max-width: clamp(520px, 48vw, 760px) !important;
+    justify-self: end;
+  }
+  .project-hero.secure-mood-tracker .hero-media img {
+    max-height: clamp(360px, 40vw, 520px) !important;
+    object-fit: contain !important;
+  }
 }
