@@ -1691,3 +1691,75 @@ img {
     max-height: 360px !important;
   }
 }
+
+/* ======================================================
+   HERO CONTAINER SIZE — give it breathing room again
+   ====================================================== */
+
+/* 1) Make the hero taller and more balanced */
+.project-hero.hero {
+  min-height: clamp(680px, 90vh, 1100px) !important; /* was 420–860px */
+  padding-block: clamp(40px, 8vh, 100px) !important;
+}
+
+/* 2) Keep the grid centered and relaxed */
+.project-hero .project-hero-inner.hero__grid {
+  align-items: center !important;
+  gap: clamp(28px, 5vw, 60px) !important;
+}
+
+/* 3) Nudge text slightly more to center for better balance */
+.project-hero .hero__copy {
+  margin-left: 6% !important;
+}
+
+/* 4) Ensure phones still stay nicely positioned */
+.project-hero .hero-fan {
+  margin-top: 10px !important;
+  transform: scale(1.04); /* subtle lift */
+  transform-origin: center;
+}
+
+/* Optional – slightly larger phones if you want them to feel grander */
+@media (min-width: 1000px) {
+  .project-hero .hero-fan .phone--center {
+    width: clamp(220px, 21vw, 280px) !important;
+  }
+  .project-hero .hero-fan .phone--left,
+  .project-hero .hero-fan .phone--right {
+    width: clamp(200px, 19vw, 260px) !important;
+  }
+}
+
+/* ======================================================
+   HERO FAN POSITION — vertically center the phones
+   ====================================================== */
+
+.project-hero .hero-fan {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-height: clamp(
+    500px,
+    70vh,
+    800px
+  ) !important; /* controls vertical space */
+  transform: none !important; /* reset any top-anchored transform */
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  position: relative !important;
+}
+
+/* Keep them visually floating in the middle */
+@media (min-width: 1000px) {
+  .project-hero .hero-fan .phone {
+    position: relative !important;
+    top: 0 !important;
+    transform: translateY(5%) !important; /* subtle lower balance */
+  }
+
+  /* Add a little more breathing room under hero */
+  .project-hero.hero {
+    padding-bottom: clamp(80px, 10vh, 120px) !important;
+  }
+}
