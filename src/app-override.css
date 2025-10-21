@@ -1484,7 +1484,7 @@ img {
 
 /* Overall hero size + spacing (balanced, not too long) */
 .project-hero.hero {
-  min-height: clamp(560px, 84vh, 980px) !important;
+  min-height: clamp(560px, 90vh, 980px) !important;
   padding-block: clamp(28px, 6vh, 72px) !important;
 }
 
@@ -1575,4 +1575,25 @@ img {
   .project-hero .hero-media img {
     max-height: 360px !important;
   }
+}
+/* ======================================================
+   MIND APP HERO — enlarge single preview image
+   ====================================================== */
+
+/* Match the ID or route name you use for the Mind App section */
+#secure-mood-tracker .hero-media,
+.project-hero.mind-app .hero-media {
+  max-width: clamp(420px, 40vw, 640px) !important; /* allow larger size */
+}
+
+#secure-mood-tracker .hero-media img,
+.project-hero.mind-app .hero-media img {
+  max-height: clamp(420px, 38vw, 640px) !important;
+  object-fit: contain !important;
+}
+
+/* Optional: lift hero slightly shorter for balance if it feels too tall */
+#secure-mood-tracker.project-hero.hero,
+.project-hero.mind-app.hero {
+  min-height: clamp(500px, 78vh, 940px) !important;
 }
